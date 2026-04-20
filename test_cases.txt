@@ -1,0 +1,172 @@
+BLACK BOX TEST CASES
+
+General rule: if input is not valid, return "INVALID".
+
+============================================================
+1) Rectangle Perimeter
+Input: length, width (number)
+Output: perimeter = 2 * (length + width)
+Equivalence partitions:
+- Valid: length > 0, width > 0, both numbers
+- Invalid: length or width is not a number
+- Invalid: length <= 0 or width <= 0
+Boundary values:
+- length = 1, width = 1 (min positive in tests)
+- length = 0 or width = 0 (invalid boundary)
+Test cases:
+TC | Input | Expected Output | Type
+TC-RP-01 | length=5, width=3 | 16 | valid
+TC-RP-02 | length=1, width=1 | 4 | boundary
+TC-RP-03 | length=0, width=4 | INVALID | invalid boundary
+TC-RP-04 | length="a", width=2 | INVALID | invalid
+
+============================================================
+2) Rectangle Area
+Input: length, width (number)
+Output: area = length * width
+Equivalence partitions:
+- Valid: length > 0, width > 0, both numbers
+- Invalid: length or width is not a number
+- Invalid: length <= 0 or width <= 0
+Boundary values:
+- length = 1, width = 2 (min positive in tests)
+- length = 0 or width = 0 (invalid boundary)
+Test cases:
+TC | Input | Expected Output | Type
+TC-RA-01 | length=4, width=2.5 | 10.0 | valid
+TC-RA-02 | length=1, width=2 | 2 | boundary
+TC-RA-03 | length=-1, width=3 | INVALID | invalid
+TC-RA-04 | length=5, width=None | INVALID | invalid
+
+============================================================
+3) Quadratic Equation
+Input: a, b, c (numbers), a != 0
+Output:
+- If d = b^2 - 4ac > 0: return (x1, x2) with x1 <= x2
+- If d == 0: return single root
+- If d < 0: return "NO_REAL_ROOTS"
+- Invalid input: return "INVALID"
+Equivalence partitions:
+- Valid: a != 0 and d > 0
+- Valid: a != 0 and d == 0
+- Valid: a != 0 and d < 0
+- Invalid: a == 0
+- Invalid: non-number inputs
+Boundary values:
+- d == 0
+- a == 0 (invalid boundary)
+Test cases:
+TC | Input | Expected Output | Type
+TC-QE-01 | a=1, b=-3, c=2 | (1.0, 2.0) | valid
+TC-QE-02 | a=1, b=2, c=1 | -1.0 | boundary
+TC-QE-03 | a=1, b=0, c=1 | NO_REAL_ROOTS | valid
+TC-QE-04 | a=0, b=2, c=1 | INVALID | invalid
+TC-QE-05 | a="1", b=2, c=3 | INVALID | invalid
+
+============================================================
+4) Days In Month (with leap year)
+Input: month (int 1..12), year (int >= 1)
+Output: number of days in that month
+Equivalence partitions:
+- Valid: month is 31-day month, year >= 1
+- Valid: month is 30-day month, year >= 1
+- Valid: month = 2, leap year
+- Valid: month = 2, non-leap year
+- Invalid: month < 1 or month > 12
+- Invalid: year <= 0
+- Invalid: non-int input
+Boundary values:
+- month = 1 and month = 12
+- month = 2 (leap / non-leap)
+- year = 1 (min valid)
+Test cases:
+TC | Input | Expected Output | Type
+TC-DM-01 | month=1, year=2024 | 31 | valid
+TC-DM-02 | month=2, year=2024 | 29 | boundary
+TC-DM-03 | month=2, year=2023 | 28 | valid
+TC-DM-04 | month=13, year=2024 | INVALID | invalid
+TC-DM-05 | month=2, year=0 | INVALID | invalid
+
+============================================================
+5) Prime Check
+Input: n (int >= 0)
+Output: True if prime, False otherwise
+Equivalence partitions:
+- Valid: n < 2 (not prime)
+- Valid: n = 2 (prime, boundary)
+- Valid: n > 2 and prime
+- Valid: n > 2 and composite
+- Invalid: n is negative
+- Invalid: non-int input
+Boundary values:
+- n = 2
+- n = 1
+- n = 0
+Test cases:
+TC | Input | Expected Output | Type
+TC-PR-01 | n=2 | True | boundary
+TC-PR-02 | n=9 | False | valid
+TC-PR-03 | n=1 | False | boundary
+TC-PR-04 | n=-5 | INVALID | invalid
+TC-PR-05 | n=3.5 | INVALID | invalid
+
+============================================================
+6) Alternating Sum S = 1 - 2 + 3 - 4 + ... + n
+Input: n (int >= 1)
+Output: integer sum
+Equivalence partitions:
+- Valid: n is odd
+- Valid: n is even
+- Invalid: n <= 0
+- Invalid: non-int input
+Boundary values:
+- n = 1
+- n = 0 (invalid boundary)
+Test cases:
+TC | Input | Expected Output | Type
+TC-AS-01 | n=1 | 1 | boundary
+TC-AS-02 | n=6 | -3 | valid
+TC-AS-03 | n=5 | 3 | valid
+TC-AS-04 | n=0 | INVALID | invalid boundary
+TC-AS-05 | n="4" | INVALID | invalid
+
+============================================================
+7) GCD of a and b
+Input: a, b (int >= 0, not both zero)
+Output: greatest common divisor
+Equivalence partitions:
+- Valid: a > 0 and b > 0
+- Valid: a = 0 and b > 0
+- Valid: a > 0 and b = 0
+- Invalid: a = 0 and b = 0
+- Invalid: a < 0 or b < 0
+- Invalid: non-int input
+Boundary values:
+- a = 0 or b = 0
+Test cases:
+TC | Input | Expected Output | Type
+TC-GCD-01 | a=54, b=24 | 6 | valid
+TC-GCD-02 | a=0, b=15 | 15 | boundary
+TC-GCD-03 | a=0, b=0 | INVALID | invalid
+TC-GCD-04 | a=-6, b=9 | INVALID | invalid
+TC-GCD-05 | a=7, b=2.5 | INVALID | invalid
+
+============================================================
+8) Sum of Factorials S = 1! + 2! + 3! + ... + n!
+Input: n (int >= 1)
+Output: integer sum
+Equivalence partitions:
+- Valid: n = 1 (boundary)
+- Valid: n > 1
+- Invalid: n <= 0
+- Invalid: non-int input
+Boundary values:
+- n = 1
+- n = 0 (invalid boundary)
+Test cases:
+TC | Input | Expected Output | Type
+TC-SF-01 | n=1 | 1 | boundary
+TC-SF-02 | n=3 | 9 | valid
+TC-SF-03 | n=5 | 153 | valid
+TC-SF-04 | n=0 | INVALID | invalid
+TC-SF-05 | n=2.2 | INVALID | invalid
